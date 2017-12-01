@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Turing Machine Simulator</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <script src="script/tape.js"></script>
+  <script src="script/instruction.js"></script>
+  <script src="script/turing-machine.js"></script>
+  <script src="script/utils.js"></script>
+  <script src="script/main.js"></script>
+</head>
+
+<body>
+
+<h1>Turing Machine Simulator</h1>
+
+<label for="table">Instruction Table</label>
+<br/>
+<textarea name="Instruction Table" id="table" spellcheck="false"></textarea>
+<br/>
+
+<label for="tape">Tape</label>
+<br/>
+<textarea name="Tape" id="tape" spellcheck="false"></textarea>
+<br/>
+
+<label for="log">Log</label>
+<span></span>
+<button name="Preset" id="preset" onclick="preset()">Preset</button>
+<button name="Reset" id="reset" onclick="reset()">Reset</button>
+<button name="Step" id="step" onclick="step()">Step</button>
+<button name="Run" id="run" onclick="run()">Run</button>
+<br/>
+<div id="log">
+</div>
+
+</body>
+</html>
