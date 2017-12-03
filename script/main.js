@@ -75,17 +75,18 @@ function step() {
     if (init) {
       init = false;
       printTell(mt.tell());
-    }
-
-    var result = mt.step();
-    if (result instanceof Instruction) {
-      printInstruction(result);
-      printTell(mt.tell());
       return 1;
     } else {
-      printHaltMessage(result);
-      halt = true;
-      return 0;
+      var result = mt.step();
+      if (result instanceof Instruction) {
+        printInstruction(result);
+        printTell(mt.tell());
+        return 1;
+      } else {
+        printHaltMessage(result);
+        halt = true;
+        return 0;
+      }
     }
   } else {
     printMessage("The Turing Machine has halted");
