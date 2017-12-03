@@ -8,6 +8,7 @@ textarea {
   outline: none;
   resize: none;
   font-size: 18px;
+  font-family: inherit;
 }
 
 div {
