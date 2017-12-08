@@ -52,3 +52,20 @@ TuringMachine.prototype.step = function () {
 
   return "No instruction matches. Halt";
 };
+
+/**
+ * Returns next instruction for this turing machine.
+ *
+ * @returns {*}
+ */
+TuringMachine.prototype.nextInstruction = function () {
+  var cell = this.tape.read();
+
+  for (var i = 0, len = this.table.length; i < len; i++) {
+    var instruction = this.table[i];
+    if (instruction.state === this.state && instruction.value === cell) {
+      return instruction;
+    }
+  }
+  return null;
+};

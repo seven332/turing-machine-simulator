@@ -147,10 +147,17 @@ function updateTapeCellValues() {
       children[center + offset].innerHTML = mt.tape.readForDisplay(offset);
       children[center - offset].innerHTML = mt.tape.readForDisplay(-offset);
     }
+
+    document.getElementById('tape_state').innerHTML = mt.state;
+    var instruction = mt.nextInstruction();
+    document.getElementById('tape_instruction').innerHTML = instruction === null ? '' : instruction.toString();
   } else {
     // Clear all cells
     for (var i = 1; i < len; i++) {
       children[i].innerHTML = '';
     }
+
+    document.getElementById('tape_state').innerHTML = '';
+    document.getElementById('tape_instruction').innerHTML = '';
   }
 }

@@ -38,5 +38,31 @@
 .tape_cursor {
   width: 48px;
   height: 48px;
+  display: inline-block;
   margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tape_text_left {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  line-height: 48px;
+  direction: rtl;
+}
+
+.tape_text_right {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  line-height: 48px;
 }
