@@ -12,7 +12,7 @@
   <script src="script/main.js"></script>
 </head>
 
-<body>
+<body onload="onLoad()" onresize="onResize()">
 
 <h1>Turing Machine Simulator</h1>
 
@@ -25,6 +25,14 @@
 <br/>
 <textarea name="Tape" id="tape" spellcheck="false" class="text_panel"></textarea>
 <br/>
+
+<label for="tape_body">Demo</label>
+<div class="tape_body" id="tape_body">
+  <div class="tape_row" id="tape_row1"></div>
+  <div class="tape_row" id="tape_row2">
+    <img class="tape_cursor" src="static/arrow-up.svg"/>
+  </div>
+</div>
 
 <label for="log">Log</label>
 <span></span>

@@ -56,6 +56,7 @@ function reset() {
     mt = new TuringMachine(table, tape);
     init = true;
     halt = false;
+    updateTapeCellValues();
     printMessage('New Turing Machine');
   } catch (error) {
     printError(error);
@@ -78,6 +79,7 @@ function step() {
       return 1;
     } else {
       var result = mt.step();
+      updateTapeCellValues();
       if (result instanceof Instruction) {
         printInstruction(result);
         printTell(mt.tell());
@@ -96,4 +98,62 @@ function step() {
 
 function run() {
   while (step() === 1);
+}
+
+var tapeRowWidth = -1;
+
+function onLoad() {
+  updateTapeCells();
+}
+
+function onResize() {
+  updateTapeCells();
+}
+
+function cellCount(tapeRowWidth) {
+  var count = Math.max(1, Math.floor((tapeRowWidth - 10) / 50));
+  if (count % 2 === 0) {
+    return count - 1;
+  } else {
+    return count;
+  }
+}
+
+function updateTapeCells() {
+  var row = document.getElementById('tape_row1');
+  var oldTapeRowWidth = tapeRowWidth;
+  tapeRowWidth = row.clientWidth;
+
+  if (tapeRowWidth !== oldTapeRowWidth) {
+    // Remove all children
+    while (row.firstChild) {
+      row.removeChild(row.firstChild);
+    }
+
+    // Add children to fit row width
+    for (var i = 0, len = cellCount(tapeRowWidth); i < len; i++) {
+      var cell = document.createElement('div');
+      cell.className = "tape_cell";
+      row.appendChild(cell);
+    }
+  }
+
+  updateTapeCellValues();
+}
+
+function updateTapeCellValues() {
+  var children = document.getElementById('tape_row1').children;
+  var len = children.length;
+
+  if (mt) {
+    for (var offset = 0, center = Math.floor(len / 2); offset <= center; offset++) {
+      children[center + offset].innerHTML = mt.tape.readForDisplay(offset);
+      children[center - offset].innerHTML = mt.tape.readForDisplay(-offset);
+    }
+  } else {
+    // Clear all cells
+    for (var i = 1; i < len; i++) {
+      children[i].innerHTML = '';
+    }
+  }
 }

@@ -53,6 +53,24 @@ Tape.prototype.read = function () {
 };
 
 /**
+ * Returns the value of the cell which is offset of current cell.
+ * Returns ' '(space) if the cell has not been wrote.
+ *
+ * @param offset
+ * @returns {*}
+ */
+Tape.prototype.readForDisplay = function (offset) {
+  var head = this.head + offset;
+  if (head < this.array.length && head >= 0) {
+    return this.array[head];
+  } else if (head <= this.head && head >= 0) {
+    return DEFAULT_CELL_VALUE;
+  } else {
+    return ' ';
+  }
+};
+
+/**
  * Writes value to the current cell.
  *
  * @param value
