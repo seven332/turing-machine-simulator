@@ -45,6 +45,7 @@ function preset() {
       'q1,1,0,R,q2\n' +
       'q1,0,0,R,q1\n';
   document.getElementById("tape").value = '110111';
+  reset();
 }
 
 function reset() {
