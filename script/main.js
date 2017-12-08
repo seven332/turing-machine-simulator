@@ -96,10 +96,6 @@ function step() {
   }
 }
 
-function run() {
-  while (step() === 1);
-}
-
 var tapeRowWidth = -1;
 
 function onLoad() {
