@@ -1,5 +1,4 @@
 var mt = null;
-var init = false;
 var halt = false;
 
 /**
@@ -55,10 +54,10 @@ function reset() {
   var tape = document.getElementById("tape").value;
   try {
     mt = new TuringMachine(table, tape);
-    init = true;
     halt = false;
     updateTapeCellValues();
     printMessage('New Turing Machine');
+    printTell(mt.tell());
   } catch (error) {
     printError(error);
   }
@@ -74,22 +73,16 @@ function step() {
   }
 
   if (!halt) {
-    if (init) {
-      init = false;
+    var result = mt.step();
+    updateTapeCellValues();
+    if (result instanceof Instruction) {
+      printInstruction(result);
       printTell(mt.tell());
       return 1;
     } else {
-      var result = mt.step();
-      updateTapeCellValues();
-      if (result instanceof Instruction) {
-        printInstruction(result);
-        printTell(mt.tell());
-        return 1;
-      } else {
-        printHaltMessage(result);
-        halt = true;
-        return 0;
-      }
+      printHaltMessage(result);
+      halt = true;
+      return 0;
     }
   } else {
     printMessage("The Turing Machine has halted");
