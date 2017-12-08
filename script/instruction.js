@@ -33,7 +33,7 @@ function table(paragraph) {
   var lines = paragraph.split('\n');
   for (var i = 0, len = lines.length; i < len; i++) {
     var line = lines[i].trim();
-    if (line.length > 0) {
+    if (line.length > 0 && line.indexOf('//') !== 0 && line.indexOf('#') !== 0) {
       instructions.push(new Instruction(line));
     }
   }
